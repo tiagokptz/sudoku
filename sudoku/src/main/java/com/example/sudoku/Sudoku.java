@@ -1,6 +1,19 @@
 package com.example.sudoku;
 
 public class Sudoku {
+    public static int randomN() {
+        int n;
+        while(true) {
+            n = (int)(Math.random() * 10);
+
+            if(n != 0) {
+                break;
+            }
+        }
+
+        return n;
+    }
+
     public static void main(String[] args) {
         int[][] sudoku = new int[9][9];
 
@@ -11,7 +24,8 @@ public class Sudoku {
                 if(j == 0) {
                    System.out.print("| ");
                 }
-                sudoku[i][j] = (int)(Math.random() * 10);
+
+                sudoku[i][j] = randomN();
                 System.out.print(sudoku[i][j] + " | ");
             }
             System.out.println();
