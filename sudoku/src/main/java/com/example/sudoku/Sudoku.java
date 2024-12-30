@@ -14,6 +14,34 @@ public class Sudoku {
         return n;
     }
 
+    public static boolean checkRow(int[][] sudoku, int n) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if(sudoku[i][j] == n) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean checkColumn(int[][] sudoku, int n) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (sudoku[j][i] == n) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean checkMatrix3X3(int[][] sudoku, int n) { //aqui tem um processo diferente a ser feito
+        return true;
+    }
+
     public static void main(String[] args) {
         int[][] sudoku = new int[9][9];
 
@@ -25,8 +53,16 @@ public class Sudoku {
                    System.out.print("| ");
                 }
 
-                sudoku[i][j] = randomN();
-                System.out.print(sudoku[i][j] + " | ");
+                while (true) {
+                    int n = randomN();
+
+                    if(checkRow(sudoku, n) && checkColumn(sudoku, n) && checkMatrix3X3(sudoku, n)) {
+                        sudoku[i][j] = n;
+                        System.out.print(sudoku[i][j] + " | ");
+                        break;
+                    }
+                }
+
             }
             System.out.println();
         }
