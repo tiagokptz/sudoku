@@ -14,24 +14,20 @@ public class Sudoku {
         return n;
     }
 
-    public static boolean checkRow(int[][] sudoku, int n) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if(sudoku[i][j] == n) {
-                    return false;
-                }
+    public static boolean checkRow(int[][] sudoku, int n, int row) {
+        for(int j = 0; j < 9; j++) {
+            if(sudoku[row][j] == n) {
+                return false;
             }
         }
 
         return true;
     }
 
-    public static boolean checkColumn(int[][] sudoku, int n) {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (sudoku[j][i] == n) {
-                    return false;
-                }
+    public static boolean checkColumn(int[][] sudoku, int n, int column) {
+        for(int i = 0; i < 9; i++) {
+            if(sudoku[column][i] == n) {
+                return false;
             }
         }
 
@@ -53,10 +49,12 @@ public class Sudoku {
                    System.out.print("| ");
                 }
 
+                //da problema na criação das outra linhas pq os metodos para checar se existem numeros iguais esta errado
+                //melhorar isso
                 while (true) {
                     int n = randomN();
 
-                    if(checkRow(sudoku, n) && checkColumn(sudoku, n) && checkMatrix3X3(sudoku, n)) {
+                    if(checkRow(sudoku, n, j) && checkColumn(sudoku, n, i) && checkMatrix3X3(sudoku, n)) {
                         sudoku[i][j] = n;
                         System.out.print(sudoku[i][j] + " | ");
                         break;
